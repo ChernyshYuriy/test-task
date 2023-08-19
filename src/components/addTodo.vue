@@ -1,6 +1,6 @@
 <template>
   <form class="addTodo" @submit.prevent="addTodo">
-    <h4>Add todo</h4>
+    <h4>Create todo</h4>
     <div class="addTodo__content">
       <div class="addTodo__block">
         <span>User id</span>
@@ -12,6 +12,7 @@
       </div>
       <Btn class="addTodo__btn">Add</Btn>
     </div>
+    <div class="validation">{{ this.validation }}</div>
   </form>
 </template>
 
@@ -28,15 +29,36 @@ export default {
     return {
       userId: null,
       title: "",
+      validation: "",
     };
   },
 
   mounted() {},
 
   methods: {
+    validationInputs() {
+      switch (true) {
+        case !this.userId:
+          this.validation = "user id can't be empty";
+          break;
+
+        case !this.title:
+          this.validation = "title can't be empty";
+          break;
+
+        case !/^\d+$/.test(this.userId):
+          this.validation = "user id must be number";
+          break;
+
+        default:
+          this.validation = "";
+          break;
+      }
+    },
     async addTodo() {
       try {
-        if (!this.userId || !this.title) return;
+        this.validationInputs();
+        if (this.validation) return;
         const resp = await fetch(API.todos, {
           method: "POST",
           body: { userId: this.userId, title: this.title },
@@ -60,6 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 .addTodo {
+  position: relative;
   h4 {
     margin-bottom: 10px;
   }
@@ -82,6 +105,12 @@ export default {
     padding: 7px;
     background-color: $green;
     height: fit-content;
+  }
+  & .validation {
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+    color: $red;
   }
   @media screen and (max-width: 400px) {
     &__content {

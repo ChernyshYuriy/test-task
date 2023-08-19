@@ -47,7 +47,7 @@ export default {
   border: 1px solid $black;
 
   &--offset {
-    margin: 20px 0px;
+    margin: 30px 0px;
   }
   &__header {
     position: sticky;
