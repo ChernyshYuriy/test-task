@@ -104,9 +104,8 @@ export default {
       this.isErrorUserData = false;
       if (!this.errorsFields.username && !this.errorsFields.phone) {
         await this.getUser();
-        if (this.activeUser)
-          sessionStorage.setItem("user", JSON.stringify(this.activeUser));
         if (this.activeUser) {
+          sessionStorage.setItem("user", JSON.stringify(this.activeUser));
           this.$router.push({ path: "/main" });
         }
       }

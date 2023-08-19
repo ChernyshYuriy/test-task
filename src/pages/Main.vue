@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       user: {},
-      showUserParams: ["name", "phone", "username", "email"],
+      showUserParams: ["username", "phone", "name", "email", "website"],
       todosList: [],
       filteredTodosList: [],
       filtersOptions: {
