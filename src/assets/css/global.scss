@@ -1,0 +1,45 @@
+//fonts
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+
+// colors
+$dark-gray1: #474747;
+$dark-gray2: #545454;
+$dark-gray-text: #5f5f5f;
+$dark-gray3: #a5a5a5;
+$light-gray: #c3c3c3;
+$light-gray2: #d6d6d640;
+$green: #519945;
+$white: #ffffff;
+$black: #353535;
+$red: #c00c00;
+
+// mixins
+@mixin border-radius {
+  border-radius: 5px;
+}
+@mixin input {
+  border: 1px solid $black;
+  padding: 5px;
+  height: 20px;
+}
+// global styles
+.container {
+  width: 1400px;
+  margin: 0 auto;
+  height: auto;
+}
+
+.input {
+  @include border-radius;
+  height: 37px;
+  width: 100%;
+  max-width: 378px;
+  border: none;
+  font-size: 16px;
+  padding: 0px 10px;
+  color: $black;
+  &::placeholder {
+    font-size: 16px;
+    color: $black;
+  }
+}
