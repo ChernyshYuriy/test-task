@@ -34,6 +34,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 30px;
   &__img {
     cursor: pointer;
     width: 24px;
@@ -41,7 +42,6 @@ export default {
     &--selected {
       height: 30px;
       width: 30px;
-      transform: translateY(-3px);
     }
   }
 }
