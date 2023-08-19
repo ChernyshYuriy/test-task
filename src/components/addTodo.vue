@@ -83,5 +83,15 @@ export default {
     background-color: $green;
     height: fit-content;
   }
+  @media screen and (max-width: 400px) {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &__block {
+      margin-bottom: 10px;
+    }
+  }
 }
 </style>

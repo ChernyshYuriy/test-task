@@ -33,6 +33,7 @@ export default {
 .favorite {
   display: flex;
   justify-content: center;
+  align-items: center;
   &__img {
     cursor: pointer;
     width: 24px;

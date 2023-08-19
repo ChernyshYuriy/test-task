@@ -28,4 +28,9 @@ export default {
     background-color: $light-gray2;
   }
 }
+@media screen and (max-width: 500px) {
+  .row {
+    padding: 3px;
+  }
+}
 </style>

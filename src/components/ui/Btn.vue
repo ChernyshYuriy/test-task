@@ -31,4 +31,9 @@ export default {
     font-size: 16px;
   }
 }
+@media screen and (max-width: 430px) {
+  .btn--register {
+    width: calc(100vw - 30px);
+  }
+}
 </style>

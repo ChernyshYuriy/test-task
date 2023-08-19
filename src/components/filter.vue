@@ -83,4 +83,13 @@ export default {
     margin-right: 10px;
   }
 }
+@media screen and (max-width: 400px) {
+  .filters {
+    flex-direction: column;
+    justify-content: flex-start;
+    &__option {
+      align-items: flex-start;
+    }
+  }
+}
 </style>

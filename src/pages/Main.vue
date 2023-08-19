@@ -16,7 +16,7 @@
             <div>UserId</div>
             <div>Title</div>
             <div>Is completed</div>
-            <div>favorite</div>
+            <div class="text-center">favorite</div>
           </div>
         </template>
         <template #body="{ userId, title, completed, id }">
@@ -196,5 +196,11 @@ export default {
 .table-grid {
   display: grid;
   grid-template-columns: 70px 1fr 100px 100px;
+}
+@media screen and (max-width: 500px) {
+  .table-grid {
+    display: grid;
+    grid-template-columns: 40px 1fr 75px 40px;
+  }
 }
 </style>

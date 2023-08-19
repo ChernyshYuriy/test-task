@@ -43,3 +43,16 @@ $red: #c00c00;
     color: $black;
   }
 }
+.text-center {
+  text-align: center;
+}
+@media screen and (max-width: 1500px) {
+  .container {
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    width: calc(100vw - 20px);
+  }
+}

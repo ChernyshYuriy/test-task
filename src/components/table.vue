@@ -64,5 +64,11 @@ export default {
     align-items: center;
     font-size: 20px;
   }
+  @media screen and (max-width: 500px) {
+    &__header {
+      font-size: 12px;
+      padding: 5px 3px;
+    }
+  }
 }
 </style>

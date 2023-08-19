@@ -169,6 +169,25 @@ export default {
     }
   }
 }
-//397
-// 447
+@media screen and (max-width: 470px) {
+  .form {
+    width: calc(100vw - 10px);
+    &__content {
+      padding: 0px 10px;
+      margin: 0px auto;
+    }
+    &__header {
+      padding: 0px 10px;
+    }
+    &__input {
+      width: calc(100vw - 50px);
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .form__block {
+    width: calc(100vw - 30px);
+  }
+}
 </style>
