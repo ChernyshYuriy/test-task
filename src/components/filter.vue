@@ -44,7 +44,7 @@ export default {
       filters: {},
     };
   },
-
+  // get filters from session storage to not lose filters after refresh page
   beforeMount() {
     const savedFilters = JSON.parse(sessionStorage.getItem("filters"));
     this.filters = savedFilters

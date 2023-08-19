@@ -87,6 +87,7 @@ export default {
   },
 
   methods: {
+    // fetching todos and combines with costume todos added before from local store
     async getTodos() {
       try {
         const resp = (await this.fetchData(API.todos)) || [];
@@ -98,7 +99,7 @@ export default {
         console.error(`work catch, request error ${error}`);
       }
     },
-
+    // create array and set in to filter option `by id` all user id what in todos list
     setAllIdsForFilter(data) {
       this.filtersOptions.byId = [
         "All users",
@@ -110,10 +111,12 @@ export default {
       if (!searchPhrase) return true;
       return item.title.toLowerCase().includes(searchPhrase.toLowerCase());
     },
+    // condition filter by id
     filterById(item, filterValue) {
       if (filterValue === "All users") return true;
       return item.userId + "" === filterValue;
     },
+    // condition filter by completed or favorite
     filterGlobal(item, filterValue) {
       const conditions = {
         Completed: (item) => !!item.completed,
@@ -124,6 +127,7 @@ export default {
       return conditions[filterValue](item);
     },
 
+    // using condition and search to make filtering i one loop
     filtering(filters) {
       this.filters = filters;
       let newTodos = this.todosList;
@@ -134,33 +138,38 @@ export default {
           this.filterGlobal(item, filters.global)
       );
     },
+    // get saved filters if not found filters use to save after refresh page
     getFilters() {
       if (this.filters?.length) return;
       const savedFilters = JSON.parse(sessionStorage.getItem("filters"));
       this.filters = savedFilters;
     },
+    // use recursion to get not used id in array because after post api return always 201
+    // and save new todos to local storage because api don't save it
     addTodo(newTodo) {
-      this.getFilters();
-      if (!this.todosList.some((item) => item.id === newId)) {
-        const todo = { ...newTodo, id: newId };
-        this.todosList.push(todo);
-        if (this.filters) this.filtering(this.filters);
-        this.setAllIdsForFilter(this.todosList);
-        const addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
-        localStorage.setItem(
-          "addedTodos",
-          JSON.stringify([...(addedTodos || []), todo])
-        );
-      } else {
+      if (this.todosList.some((item) => item.id === newId)) {
         newId++;
         this.addTodo(newTodo, newId);
+        return;
       }
+      const todo = { ...newTodo, id: newId };
+      this.todosList.push(todo);
+      this.getFilters();
+      if (this.filters) this.filtering(this.filters);
+      this.setAllIdsForFilter(this.todosList);
+      const addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
+      localStorage.setItem(
+        "addedTodos",
+        JSON.stringify([...(addedTodos || []), todo])
+      );
     },
+    // add favorite id and save it to local storage
     addFavorite(id) {
       if (this.isInFavorites(id)) return;
       this.favorites.push(id);
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
+    // remove favorite id and remove it to local storage
     removeFavorite(id) {
       this.favorites = this.favorites.filter((idFav) => idFav !== id);
       localStorage.setItem("favorites", JSON.stringify(this.favorites));

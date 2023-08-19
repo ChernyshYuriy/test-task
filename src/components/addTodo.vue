@@ -36,6 +36,7 @@ export default {
   mounted() {},
 
   methods: {
+    // validate inputs
     validationInputs() {
       switch (true) {
         case !this.userId:
@@ -55,6 +56,8 @@ export default {
           break;
       }
     },
+
+    //make request and after response 200 add todo but id not from response because api always return 201
     async addTodo() {
       try {
         this.validationInputs();

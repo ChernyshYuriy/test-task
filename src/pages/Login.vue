@@ -7,13 +7,6 @@ import Form from "../components/login/Form";
 export default {
   name: "Login-Page",
   components: { Form },
-  data() {
-    return {};
-  },
-
-  mounted() {},
-
-  methods: {},
 };
 </script>
 

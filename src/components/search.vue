@@ -27,6 +27,7 @@ export default {
   },
 
   methods: {
+    // search emit with debounce
     search() {
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {

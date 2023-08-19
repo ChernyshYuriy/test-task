@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "drop-down",
+  name: "drop-down-ui",
   props: {
     options: {
       type: Array,

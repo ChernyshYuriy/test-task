@@ -5,14 +5,6 @@
 <script>
 export default {
   name: "footer-app",
-
-  data() {
-    return {};
-  },
-
-  mounted() {},
-
-  methods: {},
 };
 </script>
 

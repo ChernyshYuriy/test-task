@@ -35,7 +35,7 @@
 </template>
 
 <script>
-const valitaionsText = {
+const validationsText = {
   requiredField: "required field",
   onlyLatter: "only english latter",
   notFoundInBase: "not found in base",
@@ -71,6 +71,7 @@ export default {
         this.users = await this.fetchData(API.users);
       }
     },
+    // searching user in fetched data
     async getUser() {
       await this.fetchUsers();
       if (!this.users?.length) return;
@@ -81,16 +82,16 @@ export default {
       );
       this.isErrorUserData = !this.activeUser;
     },
-
+    // validate inputs
     validationField(fieldKey) {
       let fieldValue = this[fieldKey];
       switch (true) {
         case !fieldValue.length:
-          this.errorsFields[fieldKey] = valitaionsText.requiredField;
+          this.errorsFields[fieldKey] = validationsText.requiredField;
           return false;
 
         case fieldKey === "username" && !/^[a-z]+$/i.test(fieldValue):
-          this.errorsFields[fieldKey] = valitaionsText.onlyLatter;
+          this.errorsFields[fieldKey] = validationsText.onlyLatter;
           return false;
 
         default:
@@ -98,6 +99,7 @@ export default {
           return true;
       }
     },
+    //submit form to move next page and save user
     async registration() {
       this.validationField("username");
       this.validationField("phone");
